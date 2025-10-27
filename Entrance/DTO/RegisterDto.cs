@@ -1,6 +1,6 @@
-namespace Entrance.Dto;
+namespace Entrance.DTO;
 
-public class RegisterDto
+public class RegisterDTO
 {
     public string Name { get; set; }
     public string Email { get; set; }

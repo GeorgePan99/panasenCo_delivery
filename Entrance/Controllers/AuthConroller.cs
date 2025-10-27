@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Entrance;
 using Entrance.Models;
-using Entrance.Dto;
+using Entrance.DTO;
 using Microsoft.AspNetCore.Identity;
 
 namespace Entrance.Controllers;
@@ -18,7 +17,7 @@ public class AuthController: Controller
     }
     
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterDto dto)
+    public async Task<IActionResult> Register([FromBody] RegisterDTO dto)
     {
         if (await _userManager.FindByEmailAsync(dto.Email) != null)
             return BadRequest("User with this email already exists");
