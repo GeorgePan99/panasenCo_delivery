@@ -18,6 +18,7 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var db = services.GetRequiredService<ApplicationContext>();
+    db.Database.Migrate();
 }
 
 app.MapGet("/", () => "This is a GET");
