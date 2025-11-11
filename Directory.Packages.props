@@ -1,0 +1,5 @@
+<Project>
+    <ItemGroup>
+        <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.11" />
+    </ItemGroup>
+</Project>
