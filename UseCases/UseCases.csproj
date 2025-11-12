@@ -14,8 +14,4 @@
       <ProjectReference Include="..\Entites\Entites.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Enterfaces\" />
-    </ItemGroup>
-
 </Project>

@@ -1,29 +1,28 @@
 ﻿using Entites;
-using Microsoft.AspNetCore.Identity;
+using UseCases.Dtos;
+using UseCases.Enterfaces;
 
 namespace UseCases;
 
 public class Registration
 {
-    private readonly UserManager<User> _userManager;
+    private readonly IRepository<User> _userRepository;
 
-    public Registration(UserManager<User> userManager)
+    public Registration(IRepository<User> userRepository)
     {
-        _userManager = userManager;
+        _userRepository = userRepository;
     }
 
-    public async Task<string> Register(User user)
+    public User CreateUser(UserRegistrationDto userCreateDto)
     {
-        if (await _userManager.FindByNameAsync("admin") != null)
-            return "User already exists";
-        User newUser = new User
-        {
-            UserName = user.UserName,
-            Email = user.Email
-        };
-        var result = await _userManager.CreateAsync(newUser, user.PasswordHash);
-        if (result.Succeeded)
-            return "User created";
-        return "Failed to create user";
+        if (_userRepository.ExistsEmail(userCreateDto.Email))
+            throw new InvalidOperationException("User with this email already exists");
+
+        var newUser = new User(
+            userCreateDto.UserName,
+            userCreateDto.Email);
+        
+        var createdUser = _userRepository.Create(newUser,  userCreateDto.Password);
+        return createdUser;
     }
 }
