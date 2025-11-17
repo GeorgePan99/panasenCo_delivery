@@ -7,11 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+        <PackageReference Include= "Microsoft.AspNetCore.Identity" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Entites\Entites.csproj" />
     </ItemGroup>
+
 
 </Project>

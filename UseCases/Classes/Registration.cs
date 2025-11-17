@@ -2,27 +2,25 @@
 using UseCases.Dtos;
 using UseCases.Enterfaces;
 
-namespace UseCases;
+namespace UseCases.Classes;
 
 public class Registration
 {
-    private readonly IRepository<User> _userRepository;
+    private readonly IUserService _userService;
 
-    public Registration(IRepository<User> userRepository)
+    public Registration(IUserService userService)
     {
-        _userRepository = userRepository;
+        _userService = userService;
     }
 
-    public User CreateUser(UserRegistrationDto userCreateDto)
+    public async Task<User> CreateUser(UserRegistrationDto userCreateDto)
     {
-        if (_userRepository.ExistsEmail(userCreateDto.Email))
-            throw new InvalidOperationException("User with this email already exists");
+        var newUser = new User { 
+            UserName = userCreateDto.UserName, 
+            Email = userCreateDto.Email
+        };
 
-        var newUser = new User(
-            userCreateDto.UserName,
-            userCreateDto.Email);
-        
-        var createdUser = _userRepository.Create(newUser,  userCreateDto.Password);
-        return createdUser;
+        var result = await _userService.CreateAsync(newUser, userCreateDto.PasswordHash);
+        return result;
     }
 }

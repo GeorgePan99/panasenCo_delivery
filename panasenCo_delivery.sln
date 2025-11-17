@@ -6,6 +6,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entites", "Entites\Entites.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases", "UseCases\UseCases.csproj", "{E67CD318-F218-429D-B93C-FA944BF6BA5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infrastructure", "infrastructure\infrastructure.csproj", "{AC71BD78-0939-431C-84A6-B48F1CA90801}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AE32F46B-0D03-4EB1-9657-E594EC2BF3F6}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +27,14 @@ Global
 		{E67CD318-F218-429D-B93C-FA944BF6BA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E67CD318-F218-429D-B93C-FA944BF6BA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E67CD318-F218-429D-B93C-FA944BF6BA5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC71BD78-0939-431C-84A6-B48F1CA90801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC71BD78-0939-431C-84A6-B48F1CA90801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC71BD78-0939-431C-84A6-B48F1CA90801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC71BD78-0939-431C-84A6-B48F1CA90801}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9AFF19E0-C800-4BA2-9860-089C91939347} = {38747B62-5916-431F-9105-2DFA64566B11}
 		{E67CD318-F218-429D-B93C-FA944BF6BA5E} = {38747B62-5916-431F-9105-2DFA64566B11}
+		{AC71BD78-0939-431C-84A6-B48F1CA90801} = {38747B62-5916-431F-9105-2DFA64566B11}
 	EndGlobalSection
 EndGlobal
