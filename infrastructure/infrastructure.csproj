@@ -11,6 +11,7 @@
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
         <PackageReference Include= "Microsoft.AspNetCore.Identity" />
+        <PackageReference Include= "Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     </ItemGroup>
     
     <ItemGroup>
@@ -22,3 +23,4 @@
     </ItemGroup>
 
 </Project>
+

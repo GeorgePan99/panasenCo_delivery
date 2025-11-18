@@ -13,7 +13,8 @@ public static class DependencyInjection
             .AddSingleton<IUserService, UserService>()
             .AddDbContext<ApplicationContext>(options =>
                 options.UseNpgsql("Host=localhost;Port=5433;Database=db;Username=user;Password=12345"))
-            .AddIdentityCore<User>();
+            .AddIdentityCore<User>()
+            .AddEntityFrameworkStores<ApplicationContext>();
             
 
         return services;
