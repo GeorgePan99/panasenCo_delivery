@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include= "Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include= "Microsoft.AspNetCore.Identity" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include= "Npgsql.EntityFrameworkCore.PostgreSQL" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Entites\Entites.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\UseCases\UseCases.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\infrastructure\infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

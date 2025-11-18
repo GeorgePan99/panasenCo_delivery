@@ -13,14 +13,13 @@ public class Registration
         _userService = userService;
     }
 
-    public async Task<User> CreateUser(UserRegistrationDto userCreateDto)
+    public async Task CreateUser(UserRegistrationDto userCreateDto)
     {
         var newUser = new User { 
             UserName = userCreateDto.UserName, 
             Email = userCreateDto.Email
         };
 
-        var result = await _userService.CreateAsync(newUser, userCreateDto.PasswordHash);
-        return result;
+        await _userService.CreateAsync(newUser, userCreateDto.PasswordHash);
     }
 }

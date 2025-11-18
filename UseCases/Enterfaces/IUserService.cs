@@ -4,5 +4,5 @@ namespace UseCases.Enterfaces;
 
 public interface IUserService
 {
-    Task<User> CreateAsync(User user, string password);
+    Task CreateAsync(User user, string password);
 }

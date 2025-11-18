@@ -13,9 +13,8 @@ public class UserService: IUserService
     {
         _userManager = userManager;
     }
-    async public Task<User> CreateAsync(User user, string password)
+    async public Task CreateAsync(User user, string password)
     {
-        var result = await _userManager.CreateAsync(user, password);
-        return user;
+        await _userManager.CreateAsync(user, password);
     }
 }
