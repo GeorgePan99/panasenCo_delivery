@@ -12,8 +12,7 @@ public class AuthController : Controller
 {
     private readonly IUserService _userService;
 
-    public AuthController(UserManager<User> userManager,
-                          IUserService userService)
+    public AuthController(IUserService userService)
     {
         _userService = userService;
     }
