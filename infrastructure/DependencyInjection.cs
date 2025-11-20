@@ -1,19 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using UseCases.Enterfaces;
-using Microsoft.AspNetCore.Identity;
 using Entites;
+using Microsoft.Extensions.Configuration;
 
 namespace infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddServices(this IServiceCollection services)
+    public static IServiceCollection AddServices(this IServiceCollection services,
+        IConfiguration config)
     {
         services
             .AddTransient<IUserService, UserService>()
             .AddDbContext<ApplicationContext>(options =>
-                options.UseNpgsql("Host=localhost;Port=5433;Database=db;Username=user;Password=12345"))
+                options.UseNpgsql(config.GetConnectionString("DefaultConnection")))
             .AddIdentityCore<User>()
             .AddEntityFrameworkStores<ApplicationContext>();
             

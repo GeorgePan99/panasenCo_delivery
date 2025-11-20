@@ -11,8 +11,10 @@
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
         <PackageReference Include= "Microsoft.AspNetCore.Identity" />
-        <PackageReference Include= "Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+        <PackageReference Include= "Microsoft.AspNetCore.Identity.EntityFrameworkCore"/>
         <PackageReference Include= "Microsoft.AspNetCore.Identity.UI" />
+        <PackageReference Include= "Microsoft.Extensions.Configuration.Json" />
+        <PackageReference Include= "Microsoft.EntityFrameworkCore.Design" />
     </ItemGroup>
     
     <ItemGroup>
