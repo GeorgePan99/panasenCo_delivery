@@ -13,8 +13,12 @@ public class UserService: IUserService
     {
         _userManager = userManager;
     }
-    async public Task CreateAsync(User user, string password)
+    public async Task<User?> FindByEmailAsync(string email)
     {
-        await _userManager.CreateAsync(user, password);
+        return await _userManager.FindByEmailAsync(email);
+    }
+    async public Task<IdentityResult> CreateAsync(User user, string password)
+    {
+        return await _userManager.CreateAsync(user, password);
     }
 }

@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Entites;
 using UseCases.Dtos;
 using UseCases.Enterfaces;
 
@@ -10,21 +8,21 @@ namespace Representation.Controllers;
 [Route("api/[controller]")]
 public class AuthController : Controller
 {
-    private readonly IUserService _userService;
+    private readonly IRegistration _registration;
 
-    public AuthController(IUserService userService)
+    public AuthController(IRegistration registration)
     {
-        _userService = userService;
+        _registration = registration;
     }
 
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] UserRegistrationDto dto)
     {
-        User newUser = new User {
-            UserName = dto.UserName,
-            Email = dto.Email
-        };
-        await _userService.CreateAsync(newUser, dto.PasswordHash);
-        return Ok();
+        var result = await _registration.CreateUser(dto);
+        
+        if (!result.IsSuccess)
+            return BadRequest(result.Errors);
+        
+        return Ok("Karasava zaregalsya nahui");
     }
 }

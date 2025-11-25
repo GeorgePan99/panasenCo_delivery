@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using infrastructure;
+using UseCases;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddUsecasesServices();
 builder.Services.AddServices(builder.Configuration);
 
 var config = builder.Configuration.GetConnectionString("DefaultConnection");
