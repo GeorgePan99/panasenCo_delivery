@@ -13,11 +13,11 @@ public class Registration: IRegistration
         _userService = userService;
     }
 
-    public async Task<Result> CreateUser(UserRegistrationDto userCreateDto)
+    public async Task<Result<User>> CreateUser(UserRegistrationDto userCreateDto)
     {
         var existingByEmail = await _userService.FindByEmailAsync(userCreateDto.Email);
         if (existingByEmail != null)
-            return Result.Failure("User with such email already exists");
+            return Result<User>.Failure("User with such email already exists");
         
         var newUser = new User { 
             UserName = userCreateDto.UserName, 
@@ -27,8 +27,8 @@ public class Registration: IRegistration
         var result = await _userService.CreateAsync(newUser, userCreateDto.Password);
         
         if (result.Succeeded) 
-            return Result.Success();
+            return Result<User>.Success(newUser);
         
-        return Result.Failure(result.Errors.Select(e => e.Description).ToList());
+        return Result<User>.Failure(newUser, result.Errors.Select(e => e.Description).ToList());
     }
 }
