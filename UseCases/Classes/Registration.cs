@@ -29,6 +29,6 @@ public class Registration: IRegistration
         if (result.Succeeded) 
             return Result<User>.Success(newUser);
         
-        return Result<User>.Failure(newUser, result.Errors.Select(e => e.Description).ToList());
+        return Result<User>.Failure(result.Errors.Select(e => e.Description).ToList());
     }
 }
