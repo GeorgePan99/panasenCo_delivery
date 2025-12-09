@@ -1,42 +1,25 @@
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
 namespace Entites;
 
-
-public class Result
+public sealed class Result<TData, TError>
 {
     public bool IsSuccess { get; }
-    public List<string> Errors { get; }
+    public TData?  Data { get; }
+    public TError? Error { get; }
 
-    protected Result(bool isSuccess,  List<string>? errors = null)
+    private Result(bool isSuccess, TData? data, TError? error)
     {
         IsSuccess = isSuccess;
-        Errors = errors ?? new List<string>();
+        Data = data;
+        Error = error;
     }
-    public static Result Success() => 
-        new(true);
-    public static Result Failure(string error) => 
-        new(false, new  List<string> { error });
 
-    public static Result Failure(List<string> errors) =>
-        new(false, errors);
-}
-
-public class Result<T>: Result
-{
-    public T Value { get; }
-
-    protected Result(bool isSuccess, T value, List<string>? errors = null)
-        : base(isSuccess, errors)
+    public static Result<TData, TError> Success(TData data)
     {
-        Value = value;
+        return new(true, data, default);
     }
 
-    public static Result<T> Success(T value) => 
-        new(true, value);
-    public static Result<T> Failure(string error) => 
-        new(false, default, new List<string>  {error});
-    public static Result<T> Failure(List<string> errors) =>
-        new(false, default, errors);
+    public static Result<TData, TError> Failure(TError error)
+    {
+        return new(false, default, error);
+    }
 }

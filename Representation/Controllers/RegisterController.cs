@@ -21,7 +21,7 @@ public class AuthController : Controller
         var result = await _registration.CreateUser(dto);
         
         if (!result.IsSuccess)
-            return BadRequest(result.Errors);
+            return BadRequest(result.Error);
         
         return Ok("Karasava zaregalsya nahui");
     }
