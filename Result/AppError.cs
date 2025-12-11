@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using System.Runtime.InteropServices.JavaScript;
-
-namespace Entites;
+namespace Result;
 
 public class AppError
 {

@@ -1,4 +1,4 @@
-namespace Entites;
+namespace Result;
 
 public sealed class Result<TData, TError>
 {
@@ -12,6 +12,10 @@ public sealed class Result<TData, TError>
         Data = data;
         Error = error;
     }
+    public static Result<TData, TError> Success()
+    {
+        return new(true, default, default);
+    }
     public static Result<TData, TError> Success(TData data)
     {
         return new(true, data, default);
@@ -21,4 +25,5 @@ public sealed class Result<TData, TError>
     {
         return new(false, default, error);
     }
+    
 }
