@@ -1,6 +1,7 @@
 ﻿using Entites;
 using UseCases.Dtos;
 using UseCases.Enterfaces;
+using Result;
 
 namespace UseCases.Classes;
 
@@ -18,7 +19,7 @@ public class Registration: IRegistration
         var existingByEmail = await _userService.FindByEmailAsync(userCreateDto.Email);
         if (existingByEmail != null)
             return Result<User, AppError>.Failure(new("ExistingError",
-                "User with such email already exists"));
+                "User with such email already exists", AppErrorType.Conflict));
         
         var newUser = new User { 
             UserName = userCreateDto.UserName, 
@@ -31,6 +32,6 @@ public class Registration: IRegistration
             return Result<User, AppError>.Success(newUser);
         
         return Result<User, AppError>.Failure(new("Unidentified error",
-            "Something went wrong"));
+            "Something went wrong", AppErrorType.Unexpected));
     }
 }

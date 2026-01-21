@@ -1,4 +1,5 @@
 using Entites;
+using Result;
 using UseCases.Dtos;
 
 namespace UseCases.Enterfaces;

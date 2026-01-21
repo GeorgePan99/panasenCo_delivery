@@ -14,5 +14,9 @@
       <ProjectReference Include="..\Entites\Entites.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Result\Result.csproj" />
+    </ItemGroup>
+
 
 </Project>

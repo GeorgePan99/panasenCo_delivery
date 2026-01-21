@@ -27,11 +27,16 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Result\Result.csproj" />
         <ProjectReference Include="..\UseCases\UseCases.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\infrastructure\infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Result\Result.csproj" />
     </ItemGroup>
 
     <ItemGroup>

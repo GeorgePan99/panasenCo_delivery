@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Representation.Mappings;
 using UseCases.Dtos;
 using UseCases.Enterfaces;
 
@@ -19,10 +20,6 @@ public class AuthController : Controller
     public async Task<IActionResult> Register([FromBody] UserRegistrationDto dto)
     {
         var result = await _registration.CreateUser(dto);
-        
-        if (!result.IsSuccess)
-            return BadRequest(result.Error);
-        
-        return Ok("Karasava zaregalsya nahui");
+        return result.ToActionResult();
     }
 }
