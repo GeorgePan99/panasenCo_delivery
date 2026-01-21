@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Result;
 
-namespace Representation.Mappings;
+namespace Mappings;
 
 public static class ResultHttpMapper
 {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Result;
 
-namespace Representation.Mappings;
+namespace Mappings;
 
 
 public static class AppErrorHttpMapper
@@ -30,3 +30,6 @@ public static class AppErrorHttpMapper
         };
     }
 }
+
+
+
