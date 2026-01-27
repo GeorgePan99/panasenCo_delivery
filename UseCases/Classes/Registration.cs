@@ -18,8 +18,9 @@ public class Registration: IRegistration
     {
         var existingByEmail = await _userService.FindByEmailAsync(userCreateDto.Email);
         if (existingByEmail != null)
-            return Result<User, AppError>.Failure(new("ExistingError",
-                "User with such email already exists", AppErrorType.Conflict));
+            return new AppError("ExistingError",
+                         "User with such email already exists", 
+                                  AppErrorType.Conflict);
         
         var newUser = new User { 
             UserName = userCreateDto.UserName, 

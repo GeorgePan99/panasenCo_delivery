@@ -25,5 +25,9 @@ public sealed class Result<TData, TError>
     {
         return new(false, default, error);
     }
-    
+
+    public static implicit operator Result<TData, TError>(TError error)
+    {
+        return Result<TData, TError>.Failure(error);
+    }
 }
