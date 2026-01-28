@@ -30,9 +30,9 @@ public class Registration: IRegistration
         var result = await _userService.CreateAsync(newUser, userCreateDto.Password);
         
         if (result.Succeeded) 
-            return Result<User, AppError>.Success(newUser);
+            return newUser;
         
-        return Result<User, AppError>.Failure(new("Unidentified error",
-            "Something went wrong", AppErrorType.Unexpected));
+        return new AppError("Unidentified error",
+            "Something went wrong", AppErrorType.Unexpected);
     }
 }

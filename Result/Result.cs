@@ -30,4 +30,8 @@ public sealed class Result<TData, TError>
     {
         return Result<TData, TError>.Failure(error);
     }
+    public static implicit operator Result<TData, TError>(TData data)
+    {
+        return Result<TData, TError>.Success(data);
+    }
 }
