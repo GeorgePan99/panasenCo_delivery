@@ -11,7 +11,7 @@ public static class ResultHttpMapper
         if (result.IsSuccess)
             return result.Data is null
                 ? new OkResult()
-                : new OkObjectResult(result.Data);
+                : new CreatedResult(string.Empty, result.Data);
 
         return result.Error!.ToActionResult();
     }
