@@ -14,7 +14,7 @@ public class Registration: IRegistration
         _userService = userService;
     }
 
-    public async Task<Result<User, AppError>> CreateUser(UserRegistrationDto userCreateDto)
+    public async Task<Result<RegisterUserResult, AppError>> CreateUser(UserRegistrationDto userCreateDto)
     {
         var existingByEmail = await _userService.FindByEmailAsync(userCreateDto.Email);
         if (existingByEmail != null)
@@ -27,12 +27,16 @@ public class Registration: IRegistration
             Email = userCreateDto.Email
         };
 
-        var result = await _userService.CreateAsync(newUser, userCreateDto.Password);
+        var identityResult = await _userService.CreateAsync(newUser, userCreateDto.Password);
+
+        if (!identityResult.Succeeded)
+        {
+            return new AppError(
+                "Unidentified error", 
+                "Something went wrong", 
+                AppErrorType.Unexpected);
+        }
         
-        if (result.Succeeded) 
-            return newUser;
-        
-        return new AppError("Unidentified error",
-            "Something went wrong", AppErrorType.Unexpected);
+        return new RegisterUserResult(newUser.Id);
     }
 }

@@ -1,10 +1,10 @@
-using Entites;
 using Result;
 using UseCases.Dtos;
+using UseCases.Classes;
 
 namespace UseCases.Enterfaces;
 
 public interface IRegistration
 {
-    public Task<Result<User, AppError>> CreateUser(UserRegistrationDto userCreateDto);
+    public Task<Result<RegisterUserResult, AppError>> CreateUser(UserRegistrationDto userCreateDto);
 }
