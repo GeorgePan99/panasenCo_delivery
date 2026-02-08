@@ -2,36 +2,46 @@ namespace Result;
 
 public sealed class Result<TData, TError>
 {
-    public bool IsSuccess { get; }
-    public TData?  Data { get; }
-    public TError? Error { get; }
+    private readonly List<TError> _errors = new();
+    
+    public bool IsSuccess => _errors.Count == 0;
+    public TData? Data { get; }
+    public IReadOnlyList<TError> Errors => _errors;
 
-    private Result(bool isSuccess, TData? data, TError? error)
+    private Result(TData? data)
     {
-        IsSuccess = isSuccess;
         Data = data;
-        Error = error;
     }
+    private Result(IEnumerable<TError> errors)
+    {
+        _errors.AddRange(errors);
+    }
+
     public static Result<TData, TError> Success()
     {
-        return new(true, default, default);
+        return new Result<TData, TError>(default(TData));
     }
     public static Result<TData, TError> Success(TData data)
     {
-        return new(true, data, default);
+        return new(data);
     }
 
     public static Result<TData, TError> Failure(TError error)
     {
-        return new(false, default, error);
+        return new(new[] {error});
+    }
+    public static Result<TData, TError> Failure(IEnumerable<TError> errors)
+    {
+        return new(errors);
+    }
+
+    public static implicit operator Result<TData, TError>(TData data)
+    {
+        return Success(data);
     }
 
     public static implicit operator Result<TData, TError>(TError error)
     {
-        return Result<TData, TError>.Failure(error);
-    }
-    public static implicit operator Result<TData, TError>(TData data)
-    {
-        return Result<TData, TError>.Success(data);
+        return Failure(error);
     }
 }

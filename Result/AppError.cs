@@ -1,6 +1,6 @@
 namespace Result;
 
-public class AppError
+public sealed class AppError
 {
     public string Code { get; }
     public string Message { get; }

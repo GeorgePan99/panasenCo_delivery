@@ -9,10 +9,12 @@ public static class ResultHttpMapper
         this Result<T, AppError> result)
     {
         if (result.IsSuccess)
+        {
             return result.Data is null
                 ? new OkResult()
                 : new CreatedResult(string.Empty, result.Data);
+        }
 
-        return result.Error!.ToActionResult();
+        return result.Errors.ToActionResult();
     }
 }
