@@ -14,7 +14,7 @@ public class Registration: IRegistration
         _userService = userService;
     }
 
-    public async Task<Result<RegisterUserResult, AppError>> CreateUser(UserRegistrationDto userCreateDto)
+    public async Task<Result<RegisterUserResult, IError>> CreateUser(UserRegistrationDto userCreateDto)
     {
         var existingByEmail = await _userService.FindByEmailAsync(userCreateDto.Email);
         if (existingByEmail != null)
@@ -31,10 +31,10 @@ public class Registration: IRegistration
 
         if (!identityResult.Succeeded)
         {
-            return new AppError(
-                "Unidentified error", 
-                "Something went wrong", 
-                AppErrorType.Unexpected);
+            return new AppErrorList()
+            {
+                Errors = identityResult.Errors.Select(e => new AppError(e.Code, e.Description, AppErrorType.Validation)).ToList()
+            };
         }
         
         return new RegisterUserResult(newUser.Id);

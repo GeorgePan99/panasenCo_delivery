@@ -6,5 +6,5 @@ namespace UseCases.Enterfaces;
 
 public interface IRegistration
 {
-    public Task<Result<RegisterUserResult, AppError>> CreateUser(UserRegistrationDto userCreateDto);
+    public Task<Result<RegisterUserResult, IError>> CreateUser(UserRegistrationDto userCreateDto);
 }

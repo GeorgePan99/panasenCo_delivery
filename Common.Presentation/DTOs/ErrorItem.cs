@@ -1,4 +1,4 @@
-namespace Mappings.DTOs;
+namespace Common.Presentation.DTOs;
 
 public sealed class ErrorItem
 {

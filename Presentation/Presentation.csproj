@@ -40,7 +40,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Mappings\Mappings.csproj" />
+        <ProjectReference Include="..\Common.Presentation\Common.Presentation.csproj" />
     </ItemGroup>
 
     <ItemGroup>
