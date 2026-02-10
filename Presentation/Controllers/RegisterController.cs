@@ -1,7 +1,9 @@
-using Mappings;
 using Microsoft.AspNetCore.Mvc;
 using UseCases.Dtos;
 using UseCases.Enterfaces;
+using Mappings;
+
+
 
 namespace Presentation.Controllers;
 
@@ -20,6 +22,6 @@ public class AuthController : Controller
     public async Task<IActionResult> Register([FromBody] UserRegistrationDto dto)
     {
         var result = await _registration.CreateUser(dto);
-        return result.ToActionResult();
+        return result.ToActionResult(HttpOperationStatus.Created);
     }
 }

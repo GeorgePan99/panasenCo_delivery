@@ -1,6 +1,6 @@
 namespace Result;
 
-public enum AppErrorType
+public enum ErrorType
 {
     Validation,
     NotFound,

@@ -1,12 +1,12 @@
 namespace Result;
 
-public sealed class AppError
+public sealed class Error: IError
 {
     public string Code { get; }
     public string Message { get; }
-    public AppErrorType Type { get; }
+    public ErrorType Type { get; }
 
-    public AppError(string code, string message, AppErrorType type)
+    public Error(string code, string message, ErrorType type)
     {
         Code = code;
         Message = message;
