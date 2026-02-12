@@ -1,4 +1,5 @@
-﻿using Entites;
+﻿using System.Diagnostics;
+using Entites;
 using UseCases.Dtos;
 using UseCases.Enterfaces;
 using Result;
@@ -26,7 +27,7 @@ public class Registration: IRegistration
             UserName = userCreateDto.UserName, 
             Email = userCreateDto.Email
         };
-
+        
         var identityResult = await _userService.CreateAsync(newUser, userCreateDto.Password);
 
         if (!identityResult.Succeeded)

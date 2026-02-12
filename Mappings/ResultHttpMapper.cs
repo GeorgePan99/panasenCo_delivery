@@ -12,27 +12,21 @@ public static class ResultHttpMapper
     {
         if (result.IsSuccess)
         {
-            if (result.Data is null)
+            switch (status)
             {
-                switch (status)
-                {
-                    case HttpOperationStatus.Get:
-                        return new OkObjectResult(result.Data);
-                        break;
-                    case HttpOperationStatus.Created:
-                        return new CreatedResult(String.Empty, result.Data);
-                        break;
-                    case HttpOperationStatus.Deleted:
-                        return new NoContentResult();
-                        break;
-                    case null:
-                        return new OkObjectResult(null);
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(status), status, null);
-                }
+                case HttpOperationStatus.Get:
+                    return new OkObjectResult(result.Data);
+                case HttpOperationStatus.Created:
+                    return new CreatedResult(String.Empty, result.Data);
+                case HttpOperationStatus.Deleted:
+                    return new NoContentResult();
+                case null:
+                    return new OkObjectResult(null);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(status), status, null);
             }
         }
 
-        return result.Error.ToActionResult();
+        return result.Error!.ToActionResult();
     }
 }

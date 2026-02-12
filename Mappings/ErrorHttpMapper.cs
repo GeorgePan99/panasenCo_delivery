@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Result;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace Mappings;
 
@@ -10,37 +11,32 @@ public static class ErrorsHttpMapper
     public static IActionResult ToActionResult(
         this IError error)
     {
+        Console.WriteLine(error.Type);
         var statusCode = ResolveStatusCode(error);
 
         return new ObjectResult(error)
         {
-            StatusCode = statusCode
+            
         };
     }
 
-    private static int ResolveStatusCode(
+    private static IActionResult ResolveStatusCode(
         IError error)
     {
         switch (error.Type)
         {
             case ErrorType.Validation:
-                return StatusCodes.Status400BadRequest;
-                break;
+                return new BadRequestObjectResult(error);
             case ErrorType.NotFound:
-                return StatusCodes.Status404NotFound;
-                break;
+                return new  NotFoundObjectResult(error);
             case ErrorType.Conflict:
-                return StatusCodes.Status409Conflict;
-                break;
+                return new ConflictObjectResult(error);
             case ErrorType.Unauthorized:
-                return StatusCodes.Status401Unauthorized;
-                break;
+                return new UnauthorizedObjectResult(error);
             case ErrorType.Forbidden:
-                return StatusCodes.Status403Forbidden;
-                break;
+                return new ForbidResult();
             case ErrorType.Unexpected:
-                return StatusCodes.Status500InternalServerError;
-                break;
+                return new  StatusCodeResult(500);
             default:
                 throw new ArgumentOutOfRangeException();
         }
